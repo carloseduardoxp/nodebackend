@@ -9,7 +9,7 @@ router.get("/", async (req,res) => {
     } catch(error) {
         res.status(412).json({ msg: error.message });
     }
-}
+});
 
 router.get("/:id", (req, res) => {
     Cliente.findOne({
