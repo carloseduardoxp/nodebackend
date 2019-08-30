@@ -2,12 +2,14 @@ const express = require('express');
 const Cliente = require('../models/clientes');
 const router = express.Router();
 
-router.get("/", (req,res) => 
-    Cliente.findAll()
-        .then(result => res.json(result))
-        .catch(error => {
-            res.status(412).json({msg: error.message});
-          }));
+router.get("/", async (req,res) => {
+    try {
+        const result = await Cliente.findAll();
+        res.json(result);
+    } catch(error) {
+        res.status(412).json({ msg: error.message });
+    }
+}
 
 router.get("/:id", (req, res) => {
     Cliente.findOne({
